@@ -1,33 +1,24 @@
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-
+import MobileNav from "./mobilenav"
+import Nav from "./nav"
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
+  <header>
+    <nav
       style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        display: "flex",
+        marginTop: "2rem",
+        justifyContent: "space-between",
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+      <p>
+        Oscar Mejia
+        <br />
+        <span style={{ color: "#c9c9c9" }}>Software Developer</span>
+      </p>
+      <MobileNav />
+      <Nav />
+    </nav>
   </header>
 )
 

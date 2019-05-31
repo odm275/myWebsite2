@@ -1,0 +1,97 @@
+/* global index page */
+.sectionTitle {
+  font-size: 1rem;
+  color: #c9c9c9;
+}
+
+/* Intro Component */
+
+.introContainer {
+  width: auto;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.primaryIntro {
+  font-size: 1.7rem;
+  line-height: 2.6rem;
+}
+.secondaryIntro {
+  font-size: 1.3rem;
+}
+.downArrow {
+  animation: bounce 2s infinite;
+  position: absolute;
+  bottom: 3rem;
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Skills Component */
+
+.skillsSection {
+  display: flex;
+}
+.skillsPreview {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+}
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+.skillsList li {
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+}
+.skillsList li:not(:first-child),
+skillsList li:not(:last-child) {
+  margin-top: 4rem;
+}
+
+.skillTitle {
+  font-size: 1.4rem;
+}
+/* FeaturedProject Component */
+
+/* Social Component */
+.socialSection {
+  display: flex;
+  align-items: stretch;
+}
+.socialContact {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  flex-basis: 50%;
+  margin: 0;
+}
+
+.socialLink {
+  font-size: 1.5rem;
+  list-style-type: none;
+}
+.socialContact li:not(:first-child),
+socialContact li:not(:last-child) {
+  margin-top: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .skillsSection {
+    display: block;
+  }
+  .downArrow {
+    display: none;
+  }
+}

@@ -1,0 +1,83 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.dev-network {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #212529;
+}
+
+.game-of-life {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #ff4500;
+}
+.lobster-pomodoro {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: red;
+}
+
+.emaily {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #ee6e73;
+}
+.getbrolic {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #4caf50;
+}
+
+.container:hover .dev-network {
+  opacity: 1;
+}
+.container:hover .game-of-life {
+  opacity: 1;
+}
+.container:hover .lobster-pomodoro {
+  opacity: 1;
+}
+.container:hover .emaily {
+  opacity: 1;
+}
+.container:hover .getbrolic {
+  opacity: 1;
+}
