@@ -5,7 +5,9 @@ module.exports = {
     author: `Oscar Mejia`,
   },
   plugins: [
+    `gatsby-plugin-typescript`,
     `gatsby-transformer-remark`,
+    `gatsby-plugin-emotion`,
     {
       resolve: "gatsby-source-contentful",
       options: {

@@ -1,14 +1,11 @@
 import React, { Component } from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons"
-import { faAngleUp } from "@fortawesome/free-solid-svg-icons"
-import ProjectPage from "./projects"
+import { ProjectCards } from "../components/ProjectCard"
 import styles from "./index-module.module.css"
 
 const Intro = ({ onClick }) => {
@@ -68,7 +65,7 @@ const RecentWork = ({ data, myRef }) => {
         <div className={sectionTitle}>Recent Work</div>
         <div />
       </nav>
-      <ProjectPage data={dataPrime} />
+      <ProjectCards />
     </section>
   )
 }
@@ -135,7 +132,7 @@ const HighlightProject = ({ data }) => {
   return (
     <section>
       <p className={sectionTitle}>Featured Project</p>
-      <ProjectPage data={dataPrime} />
+      {/* <ProjectPage data={dataPrime} /> */}
     </section>
   )
 }

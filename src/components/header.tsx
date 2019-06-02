@@ -1,8 +1,12 @@
-import PropTypes from "prop-types"
 import React from "react"
 import MobileNav from "./mobilenav"
 import Nav from "./nav"
-const Header = ({ siteTitle }) => (
+
+interface Props {
+  siteTitle: string
+}
+
+const Header = ({ siteTitle }: Props) => (
   <header>
     <nav
       style={{
@@ -21,13 +25,5 @@ const Header = ({ siteTitle }) => (
     </nav>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header

@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { ReactNode } from "react"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
@@ -7,29 +6,41 @@ import Footer from "./footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons"
 import useWindowScrollY from "../helpers/UseWindowScrollY"
+import { css } from "@emotion/core"
+
 import "./layout.css"
 
 const AngleUpScroll = () => {
   const height = useWindowScrollY()
+  const displayPanel = css({
+    display: height === 0 ? "none" : "block",
+  })
+
+  const onClick = (e: any) => {
+    e.preventDefault()
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }
   return (
     <>
       <FontAwesomeIcon
         icon={faAngleUp}
-        style={height === 0 && { display: "none" }}
+        css={displayPanel}
         size="2x"
         className="upArrow"
-        onClick={() =>
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          })
-        }
+        onClick={onClick}
       />
     </>
   )
 }
 
-const Layout = ({ children }) => (
+interface Props {
+  children: ReactNode
+}
+
+const Layout = ({ children }: Props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -73,9 +84,5 @@ const Layout = ({ children }) => (
     }}
   />
 )
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
 
 export default Layout
