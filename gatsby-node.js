@@ -38,7 +38,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   function createPages(queryResult, template) {
     queryResult.edges.forEach(edge => {
       createPage({
-        path: edge.node.slug,
+        path: `projects/${edge.node.slug}`,
         component: template,
         context: {
           slug: edge.node.slug,

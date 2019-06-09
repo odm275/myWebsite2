@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react"
 import { StaticQuery, graphql } from "gatsby"
+import styled from "@emotion/styled"
 
 import Header from "./header"
 import Footer from "./footer"
@@ -40,6 +41,11 @@ interface Props {
   children: ReactNode
 }
 
+const PageContainer = styled.div`
+  margin: 0 auto;
+  max-width: 90vw;
+`
+
 const Layout = ({ children }: Props) => (
   <StaticQuery
     query={graphql`
@@ -62,22 +68,25 @@ const Layout = ({ children }: Props) => (
               backgroundColor: "#f7df1e",
             }}
           />
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <article
-            className="App"
-            style={{
-              margin: "0 auto",
-              maxWidth: 960,
-              padding: "0px 1.0875rem 1.45rem",
-              paddingTop: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <AngleUpScroll />
-            <main>{children}</main>
-          </article>
+          <PageContainer>
+            <Header siteTitle={data.site.siteMetadata.title} />
+            <article
+              className="App"
+              style={{
+                margin: "0 auto",
+                // maxWidth: 960,
+                // padding: "0px 1.0875rem 1.45rem",
+                paddingTop: 0,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <AngleUpScroll />
+              <main>{children}</main>
+            </article>
+          </PageContainer>
+
           <Footer />
         </>
       )

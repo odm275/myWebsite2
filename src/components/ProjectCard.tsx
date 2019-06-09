@@ -3,8 +3,6 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 
-import { useContentfulProjectsData } from "../helpers/use-contentful-projects-data"
-
 const TechListWrapper = styled.div`
   color: white;
   font-size: 20px;
@@ -13,14 +11,14 @@ const TechListWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  @media (max-width: 768px) {
+    display: block;
+  }
 `
 
 const CardBody = styled.div`
   width: 100%;
   position: relative;
-  &:hover {
-    opacity: 1;
-  }
 `
 
 const ShortPreviewColor = styled.p`
@@ -31,7 +29,7 @@ const CardTitle = styled.p`
   margin-bottom: 5px;
   font-size: 1.2rem;
 `
-
+// Wraps background with color and tech list.
 const CardBackground = styled.div<ProjectCardProps>`
   position: absolute;
   top: 0;
@@ -42,6 +40,9 @@ const CardBackground = styled.div<ProjectCardProps>`
   width: 100%;
   opacity: 0;
   transition: 0.5s ease;
+  &:hover {
+    opacity: 1;
+  }
   background-color: ${(props: ProjectCardProps) => {
     let color = ""
     switch (props.slug) {
@@ -60,6 +61,8 @@ const CardBackground = styled.div<ProjectCardProps>`
       case "getbrolic":
         color = "#4caf50"
         break
+      default:
+        color = "rgb(0,0,0)"
     }
     return color
   }};
@@ -69,31 +72,32 @@ interface ProjectCardProps {
   title?: string
   slug?: string
   featuredImage?: {}
-  techList?: string
+  technologies?: string
   shortPreview?: string
 }
 
 const ProjectCard = ({
   title = "",
   slug = "",
-  featuredImage: {},
-  techList = "",
+  featuredImage = {},
+  technologies = "",
   shortPreview = "",
 }: ProjectCardProps) => {
+  const technologiesFormat = technologies
+    .split(";")
+    .map((tech: any) => <p>{tech}</p>)
   return (
-    <li>
+    <div>
       <CardBody>
-        <Link to={slug}>
-          <Img fixed={featuredImage.fixed} style={{ width: "100%" }} />
-        </Link>
-        <Link to={slug}>
+        <Link to={`projects/${slug}`}>
+          <Img fixed={featuredImage.fixed} fluid={featuredImage.fluid} />
           <CardBackground slug={slug}>
-            <TechListWrapper>{techList}</TechListWrapper>
+            <TechListWrapper>{technologiesFormat}</TechListWrapper>
           </CardBackground>
         </Link>
       </CardBody>
       <Link
-        to={slug}
+        to={`projects/${slug}`}
         css={{
           color: "#3b3a3a",
           textDecoration: "none",
@@ -102,20 +106,18 @@ const ProjectCard = ({
         <CardTitle>{title}</CardTitle>
       </Link>
       <ShortPreviewColor>{shortPreview}</ShortPreviewColor>
-    </li>
+    </div>
   )
 }
 
 export default ProjectCard
 
-/* Project Card*/
-export const ProjectCards = () => {
-  const { edges } = useContentfulProjectsData()
+export const ProjectCards = ({ data: { edges } }: any) => {
   return (
-    <li>
+    <>
       {edges.map(({ node }: any) => {
         return <ProjectCard {...node} />
       })}
-    </li>
+    </>
   )
 }

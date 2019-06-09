@@ -1,11 +1,14 @@
-import React, { Component } from "react"
+import React from "react"
+import styled from "@emotion/styled"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import RecentWork from "../components/recent-work"
+import HighlightProject from "../components/highlight-project"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons"
-import { ProjectCards } from "../components/ProjectCard"
+
 import styles from "./index-module.module.css"
 
 const Intro = ({ onClick }) => {
@@ -46,29 +49,21 @@ const Intro = ({ onClick }) => {
   )
 }
 
-//data.allContentfulBlog.edges
-const RecentWork = ({ data, myRef }) => {
-  let dataPrime = { allContentfulProject: {} }
-  dataPrime.allContentfulProject = data.featured
-  const { sectionTitle } = styles
-
-  // graphql query
-  return (
-    <section className="recentWork" ref={myRef}>
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          paddingBottom: "1rem",
-        }}
-      >
-        <div className={sectionTitle}>Recent Work</div>
-        <div />
-      </nav>
-      <ProjectCards />
-    </section>
-  )
-}
+const SkillsContainer = styled.div`
+  display: flex;
+`
+const SkillsPreview = styled.p`
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+`
+const SkillsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+`
+const SkillTitle = styled.p`
+  font-size: 1.4rem;
+`
 
 const Skills = () => {
   const {
@@ -81,15 +76,14 @@ const Skills = () => {
   return (
     <section className="skills">
       <p className={sectionTitle}>Skills</p>
-      <div className={skillsSection}>
-        <p className={skillsPreview}>
+      <SkillsContainer>
+        <SkillsPreview>
           I understand the challenges of working independetly &amp; in a group.
           Here’s a couple of things I’m good at.
-        </p>
-        <ul className={skillsList}>
+        </SkillsPreview>
+        <SkillsList>
           <li>
-            <p className={skillTitle}>Organization</p>
-
+            <SkillTitle>Organization</SkillTitle>
             <p>
               I believe it’s important to stay organised while working remotely.
               I use the likes of Trello &amp; Basecamp to help keep projects
@@ -97,7 +91,7 @@ const Skills = () => {
             </p>
           </li>
           <li>
-            <p className={skillTitle}>Time Keeping</p>
+            <SkillTitle>Time Keeping</SkillTitle>
             <p>
               I value my clients’ time and always aim to work efficiently. I
               account for and track everything I do using services such as Toggl
@@ -105,34 +99,21 @@ const Skills = () => {
             </p>
           </li>
           <li>
-            <p className={skillTitle}>Project Management</p>
+            <SkillTitle>Project Management</SkillTitle>
             <p>
               I think it’s important to identify the discrete stages of a
               project and work to a schedule around those.
             </p>
           </li>
           <li>
-            <p className={skillTitle}>Communication</p>
+            <SkillTitle>Communication</SkillTitle>
             <p>
               I realize the importance of good communication. I use tools like
               Slack to make sure we’re always on the same page.
             </p>
           </li>
-        </ul>
-      </div>
-    </section>
-  )
-}
-
-const HighlightProject = ({ data }) => {
-  let dataPrime = { allContentfulProject: {} }
-  dataPrime.allContentfulProject = data.highlight
-  const { sectionTitle } = styles
-
-  return (
-    <section>
-      <p className={sectionTitle}>Featured Project</p>
-      {/* <ProjectPage data={dataPrime} /> */}
+        </SkillsList>
+      </SkillsContainer>
     </section>
   )
 }
@@ -151,7 +132,7 @@ const Social = () => {
         <p className={sectionTitle}>Social</p>
 
         {Object.keys(socialMedias).map((key, index) => (
-          <li className>
+          <li>
             {
               <a href={socialMedias[key]} className={socialLink}>
                 {key}
@@ -220,7 +201,7 @@ const HireMe = () => {
 }
 
 //this.props.data
-const IndexPage = props => {
+const IndexPage = () => {
   const recentWorkRef = React.createRef()
 
   const onScrollToElement = () => {
@@ -231,9 +212,9 @@ const IndexPage = props => {
   return (
     <Layout>
       <Intro onClick={onScrollToElement} />
-      <RecentWork data={props.data} myRef={recentWorkRef} />
+      <RecentWork myRef={recentWorkRef} />
       <Skills />
-      <HighlightProject data={props.data} />
+      <HighlightProject />
       <Social />
       <HireMe />
     </Layout>
@@ -241,41 +222,3 @@ const IndexPage = props => {
 }
 
 export default IndexPage
-
-export const featuredProjectsQuery = graphql`
-  query indexPage {
-    featured: allContentfulProject(filter: { featured: { eq: true } }) {
-      edges {
-        node {
-          title
-          slug
-          rating
-          customer
-          technologies
-          shortPreview
-          featuredImage {
-            fixed(width: 400, height: 400) {
-              ...GatsbyContentfulFixed_withWebp
-            }
-          }
-        }
-      }
-    }
-    highlight: allContentfulProject(filter: { highlight: { eq: true } }) {
-      edges {
-        node {
-          title
-          slug
-          customer
-          technologies
-          shortPreview
-          featuredImage {
-            fluid(maxWidth: 1200) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  }
-`
