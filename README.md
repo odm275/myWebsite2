@@ -2,6 +2,6 @@
 
 ## Refactoring ToDo:
 
-    ###- Typescript
-    ###- css modules -> styled components
-    ###- Re-useable components
+     - Typescript
+     - css modules -> styled components
+     - Re-useable components
