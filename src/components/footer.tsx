@@ -90,7 +90,7 @@ const Footer = () => {
           color: "#c9c9c9",
         }}
       >
-        Copyright Oscar Mejia 2018 ©
+        Copyright Oscar Mejia 2019 ©
       </p>
     </footer>
   )

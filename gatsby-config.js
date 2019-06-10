@@ -5,6 +5,12 @@ module.exports = {
     author: `Oscar Mejia`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
     `gatsby-plugin-typescript`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-emotion`,

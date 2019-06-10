@@ -2,13 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  color: #3b3a3a;
 }
-.navbarLink:not(:last-child) {
-  color: #3b3a3a;
-  padding-right: 40px;
-  text-decoration: none;
-}
+
 .navbarLink:hover {
   color: #f7df1e;
   transition: 0.8s;

@@ -15,14 +15,12 @@ const Header = ({ siteTitle }: Props) => (
         justifyContent: "space-between",
       }}
     >
-      <p>
-        Oscar Mejia
-        <br />
-        <span style={{ color: "#c9c9c9" }}>Software Developer</span>
-      </p>
+      <span style={{ color: "#c9c9c9" }}>Oscar Mejia</span>
+
       <MobileNav />
       <Nav />
     </nav>
+    <span>Software Developer</span>
   </header>
 )
 

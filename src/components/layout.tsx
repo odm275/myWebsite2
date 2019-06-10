@@ -43,7 +43,9 @@ interface Props {
 
 const PageContainer = styled.div`
   margin: 0 auto;
-  max-width: 90vw;
+  padding: 0px 1.0875rem 1.45rem;
+  /* width: 75vw; */
+  max-width: 960px;
 `
 
 const Layout = ({ children }: Props) => (

@@ -1,7 +1,28 @@
 import React from "react"
 import { Link } from "gatsby"
+import styled from "@emotion/styled"
 
 import styles from "./nav-module.module.css"
+
+const NavbarItems = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 500px;
+  @media only screen and (max-width: 768px) {
+    & {
+      display: none;
+    }
+  }
+`
+const NavbarLink = styled.nav`
+  &:not(:last-child) {
+    color: #3b3a3a;
+    padding-right: 40px;
+    text-decoration: none;
+  }
+`
+
 const Nav = () => {
   const tabKeys = [
     { text: "About", id: "1", to: "/" },
@@ -9,9 +30,9 @@ const Nav = () => {
     { text: "Projects", id: "3", to: "/projects" },
   ]
 
-  const { navbarItems, navbarLink, navbarLinkEmail } = styles
+  const { navbarLink, navbarLinkEmail } = styles
   return (
-    <nav className={navbarItems}>
+    <NavbarItems>
       {tabKeys.map((tab, i) => (
         <Link
           key={`${i}${tab.text}`}
@@ -35,7 +56,7 @@ const Nav = () => {
       >
         pomejia@gmail.com
       </a>
-    </nav>
+    </NavbarItems>
   )
 }
 export default Nav
